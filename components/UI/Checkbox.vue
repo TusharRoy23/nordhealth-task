@@ -5,7 +5,7 @@
         :checked="modelValue"
         :size="size"
         @change="handleChange"
-    ></provet-checkbox>
+    />
 </template>
 <script setup lang="ts">
 interface Props {

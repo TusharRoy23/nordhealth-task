@@ -1,5 +1,5 @@
 <template>
-    <provet-button :type="type" :variant="variant" :slot="slot" :disabled="disabled" :loading="loading" :size="size">
+    <provet-button :slot="slot" :type="type" :variant="variant" :disabled="disabled" :loading="loading" :size="size">
         <slot />
     </provet-button>
 </template>

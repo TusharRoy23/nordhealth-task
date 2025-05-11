@@ -8,18 +8,18 @@
         :disabled="disabled"
         :readonly="readonly"
         :size="size"
+        :error="error"
         @input="handleInput"
         @change="handleChange"
-        :error="error"
     >
-        <Button 
+<Button 
           v-if="type === 'password'" 
           slot="end"
           type="button"
           variant="default"
           @click="togglePasswordVisibility"
           >
-          <provet-icon :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'"></provet-icon>
+          <provet-icon :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'"/>
         </Button>
     </provet-input>
 </template>

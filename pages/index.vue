@@ -11,33 +11,33 @@
                         name="email" 
                         type="email" 
                         label="Email"
-                        @blur="validateField('email')"
-                        @input="validateField('email')"
                         placeholder="example@gmail.com"
                         :error="errors.email"
                         expand
+                        @blur="validateField('email')"
+                        @input="validateField('email')"
                     />
                     <Input 
                         v-model="form.password" 
                         name="password" 
                         type="password" 
                         label="Password"
-                        @blur="validateField('password')"
-                        @input="validateField('password')"
                         placeholder="******"
                         :error="errors.password"
                         expand
+                        @blur="validateField('password')"
+                        @input="validateField('password')"
                     />
                     <Input 
                         v-model="form.confirmPassword" 
                         name="confirmPassword" 
                         type="password" 
                         label="Confirm Password"
-                        @blur="validateField('confirmPassword')"
-                        @input="validateField('confirmPassword')"
                         placeholder="******"
                         :error="errors.confirmPassword"
                         expand
+                        @blur="validateField('confirmPassword')"
+                        @input="validateField('confirmPassword')"
                     />
                     <Checkbox v-model="form.receiveAnnouncements" name="check" label="Are you want to receive announcements?"  />
                 </Stack>

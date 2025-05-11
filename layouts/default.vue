@@ -1,6 +1,6 @@
 <template>
     <provet-layout>
-        <Header></Header>
+        <Header/>
         <slot />
     </provet-layout>
 </template>
