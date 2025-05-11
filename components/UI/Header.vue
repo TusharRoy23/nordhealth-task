@@ -1,5 +1,5 @@
 <template>
-  <provet-header slot="header">
+  <provet-header v-bind="{ slot: 'header' }">
     <router-link :to="{ path: '/' }" class="no-underline">
       <h1 class="n-typescale-l">NordHealth</h1>
     </router-link>

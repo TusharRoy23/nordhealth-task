@@ -16,9 +16,6 @@ interface Props {
   size?: "s" | "m" | "l";
 }
 withDefaults(defineProps<Props>(), {
-  name: undefined,
-  label: undefined,
-  modelValue: undefined,
   checked: false,
   disabled: false,
   size: "m",

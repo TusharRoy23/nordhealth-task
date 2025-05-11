@@ -11,7 +11,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "build:production": "NODE_ENV=production nuxt build",
-    "lint": "eslint . --ext .vue,.js,.ts",
+    "lint:check": "eslint . --ext .vue,.js,.ts",
     "lint:fix": "eslint . --ext .vue,.js,.ts --fix",
     "prettier:check": "prettier --check \"**/*.{vue,js,ts}\"",
     "prettier:fix": "prettier --write \"**/*.{vue,js,ts}\""

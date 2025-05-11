@@ -1,10 +1,10 @@
 <template>
   <provet-card>
-    <div slot="header" v-if="$slots.cardHeader">
+    <div v-if="$slots.cardHeader" v-bind="{ slot: 'header' }">
       <slot name="cardHeader" />
     </div>
     <slot />
-    <div slot="footer" v-if="$slots.cardFooter">
+    <div v-if="$slots.cardFooter" v-bind="{ slot: 'footer' }">
       <slot name="cardFooter" />
     </div>
   </provet-card>

@@ -1,11 +1,13 @@
 <template>
   <provet-button
-    :slot="slot"
-    :type="type"
-    :variant="variant"
-    :disabled="disabled"
-    :loading="loading"
-    :size="size"
+    v-bind="{
+      slot,
+      type,
+      variant,
+      disabled,
+      loading,
+      size
+    }"
   >
     <slot />
   </provet-button>
@@ -13,7 +15,7 @@
 <script setup lang="ts">
 interface Props {
   variant?: "default" | "primary" | "dashed" | "plain" | "danger";
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   size?: "s" | "m" | "l";
   disabled?: boolean;
   loading?: boolean;

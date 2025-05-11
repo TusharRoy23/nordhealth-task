@@ -1,22 +1,22 @@
 <template>
   <provet-input
-    :name="name"
-    :type="showPassword ? 'text' : type"
-    :label="label"
-    :value="modelValue"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :readonly="readonly"
-    :size="size"
-    :error="error"
+    v-bind="{
+      name,
+      type: showPassword ? 'text' : type,
+      label,
+      value: modelValue,
+      placeholder,
+      disabled,
+      readonly,
+      size,
+      error
+    }"
     @input="handleInput"
     @change="handleChange"
   >
     <Button
       v-if="type === 'password'"
-      slot="end"
-      type="button"
-      variant="default"
+      v-bind="{ slot: 'end', type: 'button', variant: 'default' }"
       @click="togglePasswordVisibility"
     >
       <provet-icon
@@ -28,7 +28,7 @@
 <script setup lang="ts">
 interface Props {
   name: string;
-  type: "text" | "email" | "password" | "number";
+  type?: "text" | "email" | "password" | "number";
   label?: string | undefined;
   modelValue?: string | undefined;
   placeholder?: string | undefined;
@@ -45,6 +45,7 @@ withDefaults(defineProps<Props>(), {
   disabled: false,
   readonly: false,
   size: "m",
+  error: undefined,
 });
 
 const emit = defineEmits(["update:modelValue"]);
