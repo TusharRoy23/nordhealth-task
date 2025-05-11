@@ -1,8 +1,9 @@
 <template>
   <provet-banner
-v-bind="{
-    variant
-  }">
+    v-bind="{
+      variant,
+    }"
+  >
     <slot />
   </provet-banner>
 </template>

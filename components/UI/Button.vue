@@ -6,7 +6,7 @@
       variant,
       disabled,
       loading,
-      size
+      size,
     }"
   >
     <slot />

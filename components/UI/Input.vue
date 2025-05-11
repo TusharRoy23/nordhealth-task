@@ -9,7 +9,7 @@
       disabled,
       readonly,
       size,
-      error
+      error,
     }"
     @input="handleInput"
     @change="handleChange"
