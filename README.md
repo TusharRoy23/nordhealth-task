@@ -20,16 +20,16 @@ Make sure to install dependencies:
 
 ```bash
 # npm
-npm install
+$ npm install
 ```
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Start the development server on http://localhost:3000:
 
 ```bash
 # npm
-npm run dev
+$ npm run dev
 
 # linting
 $ npm run lint:check
@@ -46,14 +46,14 @@ Build the application for production:
 
 ```bash
 # npm
-npm run build
+$ npm run build
 ```
 
 Locally preview production build:
 
 ```bash
 # npm
-npm run preview
+$ npm run preview
 ```
 
 ## Docker
@@ -68,7 +68,7 @@ $ docker compose --env-file .env.dev up nordhealth-dev
 ```
 
 Production Server
-start the sever on `http://localhost:5000`:
+start the sever on http://localhost:5000:
 ```bash
 # Build
 $ docker compose --env-file .env.prod build --no-cache nordhealth-prod
