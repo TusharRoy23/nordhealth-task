@@ -14,7 +14,7 @@
 interface Props {
   name: string;
   label: string;
-  modelValue: string | boolean | number;
+  modelValue?: string | boolean | number;
   disabled?: boolean;
   size?: "s" | "m" | "l";
 }
