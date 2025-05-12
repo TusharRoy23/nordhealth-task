@@ -1,0 +1,19 @@
+services:
+  nordhealth-prod:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile-prod
+    image: nordhealth_prod
+    ports:
+      - "5000:80"
+
+  nordhealth-dev:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile-dev
+    image: nordhealth_dev
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

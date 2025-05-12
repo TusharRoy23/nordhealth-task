@@ -1,6 +1,18 @@
 # NordHealth Test
-It's a dummy test application for interview.
+It's a dummy application for interview.
 
+## Packages
+| Name      | version |
+| ----------|---------|
+| Vue       | 3.5.13  |
+| Vue Router| 4.5.1   |
+| Nuxt      | 3.17.2  |
+| eslint    | 9.26.0  |
+| @nuxt/eslint | 1.3.0|
+| @provetcloud/css | 1.1.0 |
+| @provetcloud/web-components | 1.3.4 |
+| prettier  | 3.5.3   |
+| husky     | 8.0.0   |
 
 ## Setup
 
@@ -18,6 +30,14 @@ Start the development server on `http://localhost:3000`:
 ```bash
 # npm
 npm run dev
+
+# linting
+$ npm run lint:check
+$ npm run lint:fix
+
+# prettier
+$ npm run prettier:check
+$ npm run prettier:fix
 ```
 
 ## Production
@@ -34,4 +54,25 @@ Locally preview production build:
 ```bash
 # npm
 npm run preview
+```
+
+## Docker
+
+Development Server
+```bash
+# Build
+$ docker compose --env-file .env.dev build --no-cache nordhealth-dev
+
+# Preview
+$ docker compose --env-file .env.dev up nordhealth-dev
+```
+
+Production Server
+start the sever on `http://localhost:5000`:
+```bash
+# Build
+$ docker compose --env-file .env.prod build --no-cache nordhealth-prod
+
+# Preview
+$ docker compose --env-file .env.prod up nordhealth-prod
 ```

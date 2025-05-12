@@ -1,0 +1,24 @@
+FROM node:20-alpine as buildContainer
+
+ENV NODE_ENV=production 
+ENV HUSKY=0
+
+WORKDIR /app
+COPY ./package*.json /app/
+COPY .env.prod .env
+
+RUN npm install --omit=dev --ignore-scripts
+COPY . /app
+RUN npm run generate:production
+
+FROM nginx:1.26.0-alpine
+
+# Get all the code needed to run the app
+COPY --from=buildContainer /app/.output/public/ /usr/share/nginx/html
+COPY ./dockerfiles/templates/nginx.conf /etc/nginx/nginx.conf
+
+# Expose the port the app runs in
+EXPOSE 80
+
+# Serve the app
+CMD ["nginx", "-g", "daemon off;"]

@@ -5,12 +5,11 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.local",
-    "dev:staging": "NODE_ENV=staging nuxt dev --dotenv .env.staging",
-    "build:staging": "NODE_ENV=staging nuxt build --dotenv .env.staging",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "build:production": "NODE_ENV=production nuxt build",
+    "generate:production": "NODE_ENV=production nuxt generate",
     "lint:check": "eslint . --ext .vue,.js,.ts",
     "lint:fix": "eslint . --ext .vue,.js,.ts --fix",
     "prettier:check": "prettier --check \"**/*.{vue,js,ts}\"",
