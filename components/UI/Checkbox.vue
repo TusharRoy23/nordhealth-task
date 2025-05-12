@@ -1,9 +1,12 @@
 <template>
   <provet-checkbox
-    :name="name"
-    :label="label"
-    :checked="modelValue"
-    :size="size"
+    v-bind="{
+      name,
+      label,
+      checked: modelValue,
+      size,
+      disabled,
+    }"
     @change="handleChange"
   />
 </template>
@@ -16,7 +19,6 @@ interface Props {
   size?: "s" | "m" | "l";
 }
 withDefaults(defineProps<Props>(), {
-  checked: false,
   disabled: false,
   size: "m",
 });

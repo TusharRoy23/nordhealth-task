@@ -1,21 +1,25 @@
 <template>
   <Stack width="340px" margin="var(--n-space-xl) auto">
-    <form @submit.prevent="handleSubmit">
+    <form autocomplete="off" @submit.prevent="handleSubmit">
       <Card>
         <template #cardHeader> Sign Up </template>
         <Stack>
           <Input
+            id="email"
             v-model="form.email"
             name="email"
             type="email"
             label="Email"
-            placeholder="example@gmail.com"
+            placeholder="example@mail.com"
             :error="errors.email"
             expand
+            required
+            :disabled="isSubmitting"
             @blur="validateField('email')"
             @input="validateField('email')"
           />
           <Input
+            id="password"
             v-model="form.password"
             name="password"
             type="password"
@@ -23,10 +27,16 @@
             placeholder="******"
             :error="errors.password"
             expand
+            required
+            :disabled="isSubmitting"
             @blur="validateField('password')"
-            @input="validateField('password')"
+            @input="
+              validateField('password');
+              validateField('confirmPassword');
+            "
           />
           <Input
+            id="confirmPassword"
             v-model="form.confirmPassword"
             name="confirmPassword"
             type="password"
@@ -34,13 +44,19 @@
             placeholder="******"
             :error="errors.confirmPassword"
             expand
+            required
+            :disabled="isSubmitting"
             @blur="validateField('confirmPassword')"
-            @input="validateField('confirmPassword')"
+            @input="
+              validateField('confirmPassword');
+              validateField('password');
+            "
           />
           <Checkbox
             v-model="form.receiveAnnouncements"
             name="check"
             label="Are you want to receive announcements?"
+            :disabled="isSubmitting"
           />
         </Stack>
         <template #cardFooter>

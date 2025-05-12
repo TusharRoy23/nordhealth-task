@@ -10,6 +10,7 @@
       readonly,
       size,
       error,
+      autocomplete,
     }"
     @input="handleInput"
     @change="handleChange"
@@ -36,16 +37,18 @@ interface Props {
   readonly?: boolean;
   size?: "s" | "m" | "l";
   error?: string | undefined;
+  autocomplete?: "off" | "on";
 }
 withDefaults(defineProps<Props>(), {
   type: "text",
   label: undefined,
-  modelValue: undefined,
   placeholder: undefined,
   disabled: false,
   readonly: false,
   size: "m",
   error: undefined,
+  autocomplete: "off",
+  modelValue: undefined,
 });
 
 const emit = defineEmits(["update:modelValue"]);
