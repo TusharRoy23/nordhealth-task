@@ -53,6 +53,7 @@
             "
           />
           <Checkbox
+            id="receiveAnnouncements"
             v-model="form.receiveAnnouncements"
             name="check"
             label="Are you want to receive announcements?"
@@ -61,6 +62,7 @@
         </Stack>
         <template #cardFooter>
           <Button
+            id="submit"
             type="submit"
             :disabled="!isFormValid || isSubmitting"
             :loading="isSubmitting"

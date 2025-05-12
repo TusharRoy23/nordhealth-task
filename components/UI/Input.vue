@@ -1,6 +1,7 @@
 <template>
   <provet-input
     v-bind="{
+      id,
       name,
       type: showPassword ? 'text' : type,
       label,
@@ -28,6 +29,7 @@
 </template>
 <script setup lang="ts">
 interface Props {
+  id?: string;
   name: string;
   type?: "text" | "email" | "password" | "number";
   label?: string | undefined;

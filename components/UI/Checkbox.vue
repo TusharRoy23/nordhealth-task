@@ -1,6 +1,7 @@
 <template>
   <provet-checkbox
     v-bind="{
+      id,
       name,
       label,
       checked: modelValue,
@@ -12,6 +13,7 @@
 </template>
 <script setup lang="ts">
 interface Props {
+  id?: string;
   name: string;
   label: string;
   modelValue?: string | boolean | number;
