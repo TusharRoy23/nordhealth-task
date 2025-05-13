@@ -42,6 +42,7 @@ interface Props {
   autocomplete?: "off" | "on";
 }
 withDefaults(defineProps<Props>(), {
+  id: "input",
   type: "text",
   label: undefined,
   placeholder: undefined,

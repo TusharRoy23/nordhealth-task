@@ -1,0 +1,47 @@
+[
+  {
+    "email": "admin@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin1@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin2@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": true
+  },
+  {
+    "email": "admin3@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": true
+  },
+  {
+    "email": "admin4@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin5@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": true
+  },
+  {
+    "email": "admin6@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin7@gm.com",
+    "password": "123456",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin8@gm.com",
+    "password": "123456@Aa",
+    "receiveAnnouncements": false
+  }
+]

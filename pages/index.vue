@@ -59,6 +59,9 @@
             label="Are you want to receive announcements?"
             :disabled="isSubmitting"
           />
+          <Banner v-if="errorMsg" variant="danger">
+            {{ errorMsg }}
+          </Banner>
         </Stack>
         <template #cardFooter>
           <Button
@@ -76,6 +79,9 @@
   </Stack>
 </template>
 <script setup lang="ts">
+import { useApiFetch } from "~/helper/helper";
+import type { User } from "~/utils/types";
+
 const router = useRouter();
 const initialFormState = {
   email: "",
@@ -84,6 +90,7 @@ const initialFormState = {
   receiveAnnouncements: false,
 };
 const isSubmitting = ref(false);
+const errorMsg = ref(null);
 const form = reactive({ ...initialFormState });
 
 // Validation errors
@@ -122,6 +129,18 @@ const validationRules = {
     {
       condition: (val: string) => val.length >= 6,
       message: "Password must be at least 6 characters",
+    },
+    {
+      condition: (val: string) => /[A-Z]/.test(val),
+      message: "Password must contain at least one uppercase letter",
+    },
+    {
+      condition: (val: string) => /[a-z]/.test(val),
+      message: "Password must contain at least one lowercase letter",
+    },
+    {
+      condition: (val: string) => /[^A-Za-z0-9]/.test(val),
+      message: "Password must contain at least one special character",
     },
   ],
   confirmPassword: [
@@ -165,19 +184,44 @@ const validateForm = () => {
 };
 
 const handleSubmit = async () => {
+  errorMsg.value = null;
   if (!validateForm()) return;
 
   isSubmitting.value = true;
-  setTimeout(() => {
-    try {
-      console.log("Form submitted:", form);
-      router.push("/thank-you");
-    } catch (error) {
-      console.error("Submission error:", error);
-    } finally {
-      isSubmitting.value = false;
-      Object.assign(form, initialFormState);
-    }
-  }, 3000);
+
+  /*
+      This can be tested on development mode. In future, it will be replaced with actual API call
+
+      */
+  const { data, error } = await useApiFetch("/api/signup", {
+    method: "POST",
+    body: {
+      email: form.email,
+      password: form.password,
+      receiveAnnouncements: form.receiveAnnouncements,
+    } as User,
+  });
+
+  isSubmitting.value = false;
+
+  if (error.value) {
+    errorMsg.value = error.value.data.data.message;
+    return;
+  }
+  console.log("data: ", data);
+
+  /*
+    setTimeout will be used to simulate a delay for the API call
+    In a real-world scenario, this will be removed.
+  */
+  setTimeout(() => {}, 3000);
+  try {
+    router.push("/thank-you");
+  } catch (error) {
+    console.error("Navigation error:", error);
+  } finally {
+    isSubmitting.value = false;
+    Object.assign(form, initialFormState);
+  }
 };
 </script>

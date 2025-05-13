@@ -25,6 +25,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
+  id: "button",
   variant: "primary",
   type: "button",
   size: "m",

@@ -21,8 +21,10 @@ interface Props {
   size?: "s" | "m" | "l";
 }
 withDefaults(defineProps<Props>(), {
+  id: "checkbox",
   disabled: false,
   size: "m",
+  modelValue: false,
 });
 
 const emit = defineEmits(["update:modelValue"]);
