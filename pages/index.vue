@@ -190,31 +190,41 @@ const handleSubmit = async () => {
   isSubmitting.value = true;
 
   /*
-      This can be tested on development mode. In future, it will be replaced with actual API call
-
+      This can be tested on development mode. In future, it will be replaced with actual backend API call
       */
-  const { data, error } = await useApiFetch("/api/signup", {
-    method: "POST",
-    body: {
-      email: form.email,
-      password: form.password,
-      receiveAnnouncements: form.receiveAnnouncements,
-    } as User,
-  });
+  if (process.env.NODE_ENV === "development") {
+    const { data, error } = await useApiFetch("/api/signup", {
+      method: "POST",
+      body: {
+        email: form.email,
+        password: form.password,
+        receiveAnnouncements: form.receiveAnnouncements,
+      } as User,
+    });
 
-  isSubmitting.value = false;
+    isSubmitting.value = false;
 
-  if (error.value) {
-    errorMsg.value = error.value.data.data.message;
-    return;
+    if (error.value) {
+      errorMsg.value = error.value.data.data.message;
+      return;
+    }
+    console.log("data: ", data);
   }
-  console.log("data: ", data);
 
   /*
     setTimeout will be used to simulate a delay for the API call
     In a real-world scenario, this will be removed.
   */
-  setTimeout(() => {}, 3000);
+  if (process.env.NODE_ENV === "development") {
+    handleRouteChange();
+  } else {
+    setTimeout(() => {
+      handleRouteChange();
+    }, 3000);
+  }
+};
+
+const handleRouteChange = () => {
   try {
     router.push("/thank-you");
   } catch (error) {

@@ -2,6 +2,9 @@ export function useApiFetch<T>(
   url: string | (() => string),
   options: Record<string, unknown> = {},
 ) {
+  /*
+    useRuntimeConfig() can be used to access runtime configuration variables such as API keys, base URLs, etc.
+  */
   return useFetch<T>(url, {
     ...options,
     onRequest({ request, options }) {

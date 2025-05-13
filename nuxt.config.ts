@@ -25,4 +25,9 @@ export default defineNuxtConfig({
   ],
 
   modules: ["@nuxt/eslint"],
+  runtimeConfig: {
+    public: {
+      // API base URL or any other public config
+    },
+  },
 });
