@@ -59,6 +59,15 @@ Locally preview production build:
 $ npm run preview
 ```
 
+## E2E Test (playwright)
+```bash
+# Run test
+$ npm run test:e2e
+
+# Debug test
+$ npm run test:e2e:debug
+```
+
 ## Docker
 
 Development Server
