@@ -23,6 +23,9 @@ Make sure to install dependencies:
 $ npm install
 ```
 
+## Note
+please use development mode for now to work with API endpoints as well as to see the error handling strategies. In future these endpoints can be replaced by actual backend APIs.
+
 ## Development Server
 
 Start the development server on http://localhost:3000:
