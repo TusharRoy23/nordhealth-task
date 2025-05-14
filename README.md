@@ -13,6 +13,7 @@ It's a dummy application for interview.
 | @provetcloud/web-components | 1.3.4 |
 | prettier  | 3.5.3   |
 | husky     | 8.0.0   |
+| Playwright| 1.52.0  |
 
 ## Setup
 
