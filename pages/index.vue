@@ -224,9 +224,9 @@ const handleSubmit = async () => {
   }
 };
 
-const handleRouteChange = () => {
+const handleRouteChange = async () => {
   try {
-    router.push("/thank-you");
+    await router.push("/thank-you");
   } catch (error) {
     console.error("Navigation error:", error);
   } finally {
