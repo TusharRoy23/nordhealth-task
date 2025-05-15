@@ -8,6 +8,7 @@
   </provet-banner>
 </template>
 <script setup lang="ts">
+import "@provetcloud/web-components/lib/Banner";
 interface Props {
   variant?: "info" | "danger" | "success" | "warning";
 }

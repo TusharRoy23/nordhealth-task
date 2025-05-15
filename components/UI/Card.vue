@@ -9,3 +9,6 @@
     </div>
   </provet-card>
 </template>
+<script setup lang="ts">
+import "@provetcloud/web-components/lib/Card";
+</script>

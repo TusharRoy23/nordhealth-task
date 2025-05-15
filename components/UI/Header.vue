@@ -5,6 +5,9 @@
     </router-link>
   </provet-header>
 </template>
+<script setup lang="ts">
+import "@provetcloud/web-components/lib/Header";
+</script>
 <style lang="css" scoped>
 .no-underline {
   text-decoration: none;

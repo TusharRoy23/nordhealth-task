@@ -28,6 +28,7 @@
   </provet-input>
 </template>
 <script setup lang="ts">
+import "@provetcloud/web-components/lib/Input";
 interface Props {
   id?: string;
   name: string;

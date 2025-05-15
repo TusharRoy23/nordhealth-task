@@ -12,6 +12,7 @@
   />
 </template>
 <script setup lang="ts">
+import "@provetcloud/web-components/lib/Checkbox";
 interface Props {
   id?: string;
   name: string;

@@ -14,6 +14,7 @@
   </provet-button>
 </template>
 <script setup lang="ts">
+import "@provetcloud/web-components/lib/Button";
 interface Props {
   id?: string;
   variant?: "default" | "primary" | "dashed" | "plain" | "danger";

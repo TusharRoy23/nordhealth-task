@@ -10,6 +10,7 @@
   </provet-stack>
 </template>
 <script setup lang="ts">
+import "@provetcloud/web-components/lib/Stack";
 interface Props {
   gap?: "none" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
   width?: string;

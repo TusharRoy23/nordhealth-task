@@ -43,5 +43,15 @@
     "email": "admin8@gm.com",
     "password": "123456@Aa",
     "receiveAnnouncements": false
+  },
+  {
+    "email": "admin12@gm.com",
+    "password": "123456!aA",
+    "receiveAnnouncements": false
+  },
+  {
+    "email": "admin11@gm.com",
+    "password": "123456@aA",
+    "receiveAnnouncements": false
   }
 ]
