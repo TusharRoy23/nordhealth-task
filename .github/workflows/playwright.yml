@@ -20,7 +20,7 @@ jobs:
     - name: Build Nuxt app
       run: npm run build
     # Lint check
-    - name: Run ESLint
+    - name: Run ESLint check
       run: npm run lint:check
     # Prettier check (only check formatting, don’t write)
     - name: Run Prettier check
