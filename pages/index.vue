@@ -10,7 +10,7 @@
             name="email"
             type="email"
             label="Email"
-            placeholder="example@mail.com"
+            placeholder="username@example.com"
             :error="errors.email"
             expand
             required
@@ -29,11 +29,7 @@
             expand
             required
             :disabled="isSubmitting"
-            @blur="validateField('password')"
-            @input="
-              validateField('password');
-              validateField('confirmPassword');
-            "
+            @input="handlePasswordInput"
           />
           <Input
             id="confirmPassword"
@@ -46,11 +42,7 @@
             expand
             required
             :disabled="isSubmitting"
-            @blur="validateField('confirmPassword')"
-            @input="
-              validateField('confirmPassword');
-              validateField('password');
-            "
+            @input="handleConfirmPasswordInput"
           />
           <Checkbox
             id="receiveAnnouncements"
@@ -131,6 +123,17 @@ const validationRules = {
       message: "Password must be at least 6 characters",
     },
     {
+      condition: (val: string) => !/[\s]/.test(val),
+      message: "Password cannot contain spaces",
+    },
+    {
+      condition: (val: string) =>
+        !/[\u{1F600}-\u{1F6FF}\u{1F300}-\u{1F5FF}\u{1F900}-\u{1F9FF}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}]/u.test(
+          val,
+        ),
+      message: "Password cannot contain emojis",
+    },
+    {
       condition: (val: string) => /[A-Z]/.test(val),
       message: "Password must contain at least one uppercase letter",
     },
@@ -139,8 +142,17 @@ const validationRules = {
       message: "Password must contain at least one lowercase letter",
     },
     {
+      condition: (val: string) => /[0-9]/.test(val),
+      message: "Password must contain at least one number",
+    },
+    {
       condition: (val: string) => /[^A-Za-z0-9]/.test(val),
       message: "Password must contain at least one special character",
+    },
+    {
+      condition: (val: string) =>
+        /^[A-Za-z0-9!@#$%^&*()_+=[\]{};':"\\|,.<>/?]*$/.test(val),
+      message: "Password contains invalid characters",
     },
   ],
   confirmPassword: [
@@ -153,34 +165,51 @@ const validationRules = {
 };
 
 // Validate a single field
-const validateField = (fieldName: keyof typeof form) => {
-  const rules = validationRules[fieldName] || [];
-  if (fieldName === "receiveAnnouncements") return true;
-
-  if (!rules) return true;
-
-  for (const rule of rules) {
-    if (!rule.condition(form[fieldName] as string)) {
-      errors[fieldName] = rule.message;
-      return false;
-    }
+const validateField = (fieldName: keyof typeof errors): boolean => {
+  const rules = validationRules[fieldName];
+  if (!rules?.length) {
+    errors[fieldName] = "";
+    return true;
   }
 
-  errors[fieldName] = "";
-  return true;
+  const failedRule = rules.find((rule) => !rule.condition(form[fieldName]));
+  errors[fieldName] = failedRule?.message || "";
+  return !failedRule;
+};
+
+const handlePasswordInput = () => {
+  validateField("password");
+  if (form.confirmPassword) validateField("confirmPassword");
+};
+
+const handleConfirmPasswordInput = () => {
+  validateField("confirmPassword");
 };
 
 // Validate entire form
-const validateForm = () => {
-  let isValid = true;
+const validateForm = (): boolean => {
+  return Object.keys(validationRules)
+    .filter((field) => field !== "receiveAnnouncements") // skip checkbox
+    .every((field) => validateField(field as keyof typeof errors));
+};
 
-  Object.keys(validationRules).forEach((field) => {
-    if (!validateField(field as keyof typeof form)) {
-      isValid = false;
-    }
+const simulateApiCall = async () => {
+  const { data, error } = await useApiFetch("/api/signup", {
+    method: "POST",
+    body: {
+      email: form.email,
+      password: form.password,
+      receiveAnnouncements: form.receiveAnnouncements,
+    } as User,
   });
 
-  return isValid;
+  if (error.value) {
+    errorMsg.value = error.value.data.data.message;
+    return false;
+  }
+
+  console.log("data: ", data);
+  return true;
 };
 
 const handleSubmit = async () => {
@@ -189,38 +218,17 @@ const handleSubmit = async () => {
 
   isSubmitting.value = true;
 
-  /*
-      This can be tested on development mode. In future, it will be replaced with actual backend API call
-      */
-  if (process.env.NODE_ENV === "development") {
-    const { data, error } = await useApiFetch("/api/signup", {
-      method: "POST",
-      body: {
-        email: form.email,
-        password: form.password,
-        receiveAnnouncements: form.receiveAnnouncements,
-      } as User,
-    });
+  const simulate = process.env.NODE_ENV === "development";
 
+  if (simulate && !(await simulateApiCall())) {
     isSubmitting.value = false;
-
-    if (error.value) {
-      errorMsg.value = error.value.data.data.message;
-      return;
-    }
-    console.log("data: ", data);
+    return;
   }
 
-  /*
-    setTimeout will be used to simulate a delay for the API call
-    In a real-world scenario, this will be removed.
-  */
-  if (process.env.NODE_ENV === "development") {
+  if (simulate) {
     handleRouteChange();
   } else {
-    setTimeout(() => {
-      handleRouteChange();
-    }, 3000);
+    setTimeout(handleRouteChange, 3000);
   }
 };
 
