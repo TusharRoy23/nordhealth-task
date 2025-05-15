@@ -89,3 +89,5 @@ $ docker compose --env-file .env.prod build --no-cache nordhealth-prod
 # Preview
 $ docker compose --env-file .env.prod up nordhealth-prod
 ```
+## Github Actions
+Github Actions CI flow will check the eslint, prettier, and e2e-test (playwright) on all pull request as well as new commits.
