@@ -19,6 +19,13 @@ jobs:
       run: npx playwright install --with-deps
     - name: Build Nuxt app
       run: npm run build
+    # Lint check
+    - name: Run ESLint
+      run: npm run lint:check
+    # Prettier check (only check formatting, don’t write)
+    - name: Run Prettier check
+      run: npm run prettier:check
+    # Playwright setup and test
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
